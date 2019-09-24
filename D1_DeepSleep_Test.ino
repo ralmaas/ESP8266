@@ -80,6 +80,13 @@ void reconnect() {
 
 float getVoltage()
 {
+    /*
+   * Resistor array is as this:
+   *     /-- 100k --- 220k --- 130k --\
+   *     |         |        |         |
+   *    Gnd       ADC       A0       Vbat
+   * 4.5V at Vbat will give a readout of 1023 (and 1V at ADC input)
+   */
   int sensorValue = analogRead(A0);
   float voltage = sensorValue * (4.52 / 1024.0);
   return voltage;
